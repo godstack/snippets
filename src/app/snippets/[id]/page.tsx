@@ -46,3 +46,9 @@ export default async function SnippetShowPage({ params }: TProps) {
     </div>
   );
 }
+
+export async function generateStaticParams() {
+  const snippets = await db.snippet.findMany();
+
+  return snippets.map((item) => ({ id: String(item.id) }));
+}
